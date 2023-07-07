@@ -1,0 +1,19 @@
+package vivero;
+
+public class Vivero {
+	
+	private String nombre;
+	
+	public Vivero(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+}
