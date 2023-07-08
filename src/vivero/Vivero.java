@@ -6,11 +6,11 @@ import java.util.HashMap;
 public class Vivero {
 	
 	private String nombre;
-	private Map<String, Integer> plantas;
+	private Map<Planta, Integer> plantas;
 	
 	public Vivero(String nombre) {
 		this.setNombre(nombre);
-		this.setPlantas(new HashMap<String, Integer>());
+		this.setPlantas(new HashMap<Planta, Integer>());
 	}
 
 	public String getNombre() {
@@ -21,45 +21,35 @@ public class Vivero {
 		this.nombre = nombre;
 	}
 
-	public Map<String, Integer> getPlantas() {
+	public Map<Planta, Integer> getPlantas() {
 		return plantas;
 	}
 
-	private void setPlantas(Map<String, Integer> plantas) {
+	private void setPlantas(Map<Planta, Integer> plantas) {
 		this.plantas = plantas;
 	}
 
-	public void agregarPlanta(Planta planta) {
-		this.getPlantas().put(planta.getNombre(), this.valorAdecuadoPara(planta));
-	}
+	public void agregarPlanta(Planta planta, int cantidad) {
+        int cantidadActual = this.getPlantas().getOrDefault(planta, 0);
+        cantidadActual += cantidad;
+        
+        this.getPlantas().put(planta, cantidadActual);
+    }
 	
-	private Integer valorAdecuadoPara(Planta planta) {
-		Integer valorAdecuado = 1;
-		String  keyABuscar    = planta.getNombre();
-		
-		if (this.getPlantas().containsKey(keyABuscar)) {
-			valorAdecuado = this.getPlantas().get(keyABuscar) + 1;
-		}
-		
-		return valorAdecuado;
-	}
+	public void eliminarPlanta(Planta planta, int cantidad) {
+        if (this.getPlantas().containsKey(planta)) {
+            int cantidadActual = this.getPlantas().get(planta);
+            cantidadActual -= cantidad;
 
-	public void eliminarPlanta(Planta planta) {
-		String  keyABuscar    = planta.getNombre();
-		
-		if (this.getPlantas().containsKey(keyABuscar)) {
-			this.getPlantas().put(keyABuscar, this.getPlantas().get(keyABuscar) - 1);
-			this.eliminarKeySiCorresponde(keyABuscar);
+            if (cantidadActual <= 0) {
+                this.getPlantas().remove(planta);
+            } else {
+                this.getPlantas().put(planta, cantidadActual);
+            }
+
 		} else {
 			throw new IllegalArgumentException("Error, la planta no se encuentra registrada.");
 		}
-		
 	}
-	
-	private void eliminarKeySiCorresponde(String keyAExaminar) {
-		if (this.getPlantas().get(keyAExaminar) == 0) {
-			this.getPlantas().remove(keyAExaminar);
-		}
-	}
-	
+
 }
