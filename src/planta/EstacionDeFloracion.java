@@ -1,4 +1,4 @@
-package vivero;
+package planta;
 
 public enum EstacionDeFloracion {
 	

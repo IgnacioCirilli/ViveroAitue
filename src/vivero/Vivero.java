@@ -1,6 +1,9 @@
 package vivero;
 
 import java.util.Map;
+
+import planta.Planta;
+
 import java.util.HashMap;
 
 public class Vivero {
