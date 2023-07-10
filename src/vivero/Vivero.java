@@ -2,9 +2,12 @@ package vivero;
 
 import java.util.Map;
 
+import filtro.Filtro;
 import planta.Planta;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Vivero {
 	
@@ -53,6 +56,23 @@ public class Vivero {
 		} else {
 			throw new IllegalArgumentException("Error, la planta no se encuentra registrada.");
 		}
+	}
+
+	public void aumentarPrecioPorPorcentajePlantas(List<Planta> plantasAAumentar, int porcentajeAAumentar) {
+		plantasAAumentar.stream()
+		                .forEach(p -> p.aumentarPrecioPorPorcentaje(porcentajeAAumentar));
+	}
+
+	public void aumentarPrecioPorCantidadPlantas(List<Planta> plantasAAumentar, int cantidadAAumentar) {
+		plantasAAumentar.stream()
+		                .forEach(p -> p.aumentarPrecioPorCantidad(cantidadAAumentar));
+		
+	}
+
+	public List<Planta> filtrarPlantas(Filtro filtro) {
+		List<Planta> plantas = new ArrayList<Planta>(this.getPlantas().keySet());
+		
+		return filtro.filtrarPlantas(plantas);
 	}
 
 }

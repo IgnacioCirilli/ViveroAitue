@@ -19,7 +19,7 @@ public class Precio implements Filtro {
 		return precioAFiltrar;
 	}
 
-	public void setPrecioAFiltrar(double precioAFiltrar) {
+	private void setPrecioAFiltrar(double precioAFiltrar) {
 		this.precioAFiltrar = precioAFiltrar;
 	}
 

@@ -14,6 +14,7 @@ import vivero.Vivero;
 class PlantaTestCase {
 	
 	private Planta planta;
+	private Planta planta2;
 	
 	private List<EstacionDeFloracion> estaciones;
 	
@@ -30,8 +31,11 @@ class PlantaTestCase {
 		
 		propositos = Arrays.asList(Proposito.ORNAMENTAL);
 		
-		planta = new Planta("Ceibo", "Erythrina crista galli", TipoDeMaceta.L3, TipoDePlanta.ARBOL, 
+		planta  = new Planta("Ceibo", "Erythrina crista galli", TipoDeMaceta.L3, TipoDePlanta.ARBOL, 
 				             this.estaciones, 2000, false, false, this.propositos, this.vivero);
+		
+		planta2 = new Planta("Ceibo", "Erythrina crista galli", TipoDeMaceta.L3, TipoDePlanta.ARBOL, 
+	                         this.estaciones, 2000, false, false, this.propositos, this.vivero);
 		
 	}
 
@@ -85,6 +89,11 @@ class PlantaTestCase {
 		
 		//Verify
 		verify(this.vivero, times(1)).eliminarPlanta(planta, 2);
+	}
+	
+	@Test
+	void verificacionDeIgualdadEntreDosPlantas() {
+		assertTrue(this.planta.equals(this.planta2));
 	}
 
 }
