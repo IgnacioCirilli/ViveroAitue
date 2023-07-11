@@ -66,14 +66,14 @@ class ViveroTestCase {
 	@Test
 	void verificacionDeAgregadoDeUnaPlantaAUnVivero() {		
 		//Exercise
-		this.vivero.agregarPlanta(this.planta1, 1);
+		this.vivero.agregarPlanta(this.planta1, 4);
 		this.vivero.agregarPlanta(this.planta2, 1);
-		this.vivero.agregarPlanta(this.planta3, 1);
+		this.vivero.agregarPlanta(this.planta3, 2);
 		
 		assertFalse(this.vivero.getPlantas().isEmpty());
 		assertTrue(this.vivero.getPlantas().containsKey(this.planta1));
 		assertEquals(2, this.vivero.getPlantas().size());
-		assertEquals(2, this.vivero.getPlantas().get(this.planta1));  
+		assertEquals(6, this.vivero.getPlantas().get(this.planta1));  
 	}
 	
 	@Test
